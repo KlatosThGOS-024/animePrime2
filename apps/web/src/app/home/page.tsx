@@ -9,6 +9,7 @@ const page = () => {
     <section className="opacity-95 bg-[#00050D] ">
       <Header />
       <RecentlyRelased />
+      <ActionGenre />
     </section>
   );
 };

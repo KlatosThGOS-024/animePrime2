@@ -63,4 +63,3 @@ const userLogout = asyncHandler(async (req: Request, res: Response) => {
     .send(ApiResponse.success("successfully logout"));
 });
 export { userRegister, userRegiste3r, userLogin, userLogout };
-

@@ -1,7 +1,11 @@
 {
-  "name": "api",
+  "name": "db",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,14 +14,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@types/express": "^5.0.0",
-    "cloudinary": "^2.5.1",
-    "db": "*",
-    "dotenv": "^16.4.7",
-    "multer": "^1.4.5-lts.1",
-    "puppeteer": "^24.2.1"
+    "@prisma/client": "^6.4.0",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
-    "@types/multer": "^1.4.12"
+    "prisma": "^6.4.0"
   }
 }

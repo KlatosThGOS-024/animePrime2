@@ -1,0 +1,1 @@
+{"root":["./src/app.ts","./src/index.ts","./src/controllers/user.controller.ts","./src/controllers/animedata/animedata.controller.ts","./src/routes/anime.routes.ts","./src/routes/user.routes.ts","./src/utils/animedata.ts","./src/utils/apierror.ts","./src/utils/apiresponse.ts","./src/utils/asynchandler.ts","./src/utils/cloudinary.ts","./src/utils/multer.ts"],"version":"5.7.3"}

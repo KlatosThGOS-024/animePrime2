@@ -18,3 +18,12 @@ model User {
   email String 
   password String
 }
+
+model AnimeCard {
+  id      Int     @id @default(autoincrement())
+  title   String
+  image   String
+  typez   String? // Optional
+  subDub  String
+  timeago String
+}

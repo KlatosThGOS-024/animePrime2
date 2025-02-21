@@ -1,3 +1,4 @@
+import { animeCard } from "./Anime";
 import {
   signupSchema,
   loginSchema,
@@ -10,4 +11,8 @@ export const userType = {
   loginSchema,
   resetPasswordConfirmSchema,
   resetPasswordRequestSchema,
+};
+
+export const animeType = {
+  animeCard,
 };

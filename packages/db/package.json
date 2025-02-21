@@ -1,13 +1,12 @@
 {
-  "name": "db",
+  "name": "@repo/db",
   "version": "1.0.0",
-  "main": "index.ts",
-  "type": "module",
+  "main": "src/index.js",
   "exports": {
-    ".": "./index.ts"
+    ".": "./dist/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": " tsc "
   },
   "keywords": [],
   "author": "",

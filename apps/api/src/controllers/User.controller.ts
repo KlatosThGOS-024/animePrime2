@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
 
 import { ApiError } from "../utils/ApiError";
-import prisma from "db";
+import prisma from "@repo/db";
 import { ApiResponse } from "../utils/ApiResponse";
-import { userType } from "common";
 import { asyncHandler } from "../utils/asyncHandler";
+import { userType } from "@repo/common";
 
 const userRegister = asyncHandler(async (req: Request, res: Response) => {
   const userDetails = userType.signupSchema.safeParse(req.body);

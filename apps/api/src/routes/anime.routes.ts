@@ -3,6 +3,6 @@ import { saveAmimeCard } from "../controllers/AnimeData/animedata.controller";
 
 const animeRouter = Router();
 
-animeRouter.route("/animeCard").post(saveAmimeCard);
+animeRouter.route("/anime/animeCard").post(saveAmimeCard);
 
 export { animeRouter };

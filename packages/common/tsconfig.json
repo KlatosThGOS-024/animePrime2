@@ -1,27 +1,14 @@
 {
   "compilerOptions": {
-    // Enable latest features
-    "lib": ["ESNext", "DOM"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
-
-    // Bundler mode
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-
-    // Best practices
+    "outDir": "./dist", // ✅ Output transpiled JS here
+    "rootDir": "./src", // ✅ Source files location
+    "module": "NodeNext", // ✅ Needed for ES module compatibility
+    "moduleResolution": "NodeNext", // ✅ Ensures correct import resolution
+    "declaration": true, // ✅ Generate .d.ts files
+    "emitDeclarationOnly": false, // ✅ Generate JS & types
+    "esModuleInterop": true, // ✅ Allows CommonJS imports
     "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  }
+    "skipLibCheck": true
+  },
+  "include": ["src"]
 }

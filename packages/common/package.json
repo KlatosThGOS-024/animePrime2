@@ -1,9 +1,12 @@
 {
-  "name": "common",
-  "module": "index.ts",
-  "type": "module",
+  "name": "@repo/common",
+  "version": "1.0.0",
+  "main": "src/index.js",
   "exports": {
-    ".": "./index.ts"
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "tsc": " tsc "
   },
   "devDependencies": {
     "@types/bun": "latest"

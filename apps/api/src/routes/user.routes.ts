@@ -2,13 +2,12 @@ import { Router } from "express";
 import {
   userLogin,
   userLogout,
-  userRegiste3r,
   userRegister,
 } from "../controllers/User.controller";
 import multer from "multer";
 const upload = multer({ dest: "uploads/" });
 const userRouter = Router();
-userRouter.route("/sign").get(userRegiste3r);
+// userRouter.route("/sign").get(userRegiste3r);
 
 userRouter
   .route("/signUp")

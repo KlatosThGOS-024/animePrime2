@@ -8,7 +8,13 @@ dotenv_1.default.config({
     path: "../../.env",
 });
 const app_1 = __importDefault(require("./app"));
+const db_1 = require("@repo/db");
 const port = process.env.PORT;
-app_1.default.listen(port, () => {
-    console.log("Server has started on port ", port);
+(0, db_1.dbConnection)().then((response) => {
+    console.log(response);
+    if (response === 1) {
+        app_1.default.listen(port, () => {
+            console.log("Server and db started, port ", port);
+        });
+    }
 });

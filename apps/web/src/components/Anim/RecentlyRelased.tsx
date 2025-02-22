@@ -2,63 +2,10 @@
 import React, { useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-const images = [
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-  "/images/soloLeveling.png",
-];
-
 const Carousel = ({ imgSrc }: { imgSrc: string }) => {
   return (
     <div className="group relative overflow-visible">
       <img className="w-[320px] h-[184px] rounded-lg" src={imgSrc} />
-      {/* <div
-        className="absolute left-1/2 -translate-x-1/2 top-full
-       hidden group-hover:flex justify-center items-center
-        bg-orange-300 w-[300px] h-[300px] rounded-lg z-30"
-      >
-        <p className="text-white font-bold">Extra Info</p>
-      </div> */}
     </div>
   );
 };

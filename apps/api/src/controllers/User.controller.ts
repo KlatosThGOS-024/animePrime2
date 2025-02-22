@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
 
 import { ApiError } from "../utils/ApiError";
-import prisma from "@repo/db";
 import { ApiResponse } from "../utils/ApiResponse";
 import { asyncHandler } from "../utils/asyncHandler";
 import { userType } from "@repo/common";
+import { User } from "@repo/db";
 
 const userRegister = asyncHandler(async (req: Request, res: Response) => {
   const userDetails = userType.signupSchema.safeParse(req.body);
@@ -14,11 +14,11 @@ const userRegister = asyncHandler(async (req: Request, res: Response) => {
       userDetails.error
     );
   }
-  const userExist = await prisma.user.findFirst({});
+  const userExist = await User.findById({ userDetails });
   if (userExist) {
     throw ApiError.badRequest("User already present by this email");
   }
-  const user = await prisma.user.create({
+  const user = await User.create({
     data: {
       username: userDetails.data.username,
       email: userDetails.data.email,
@@ -27,10 +27,7 @@ const userRegister = asyncHandler(async (req: Request, res: Response) => {
   });
   res.status(201).send(ApiResponse.success("success", user));
 });
-const userRegiste3r = asyncHandler(async (req: Request, res: Response) => {
-  const helo = "jel";
-  res.status(201).send(ApiResponse.success("success", helo));
-});
+
 const userLogin = asyncHandler(async (req: Request, res: Response) => {
   const userDetails = userType.loginSchema.safeParse(req.body);
   if (!userDetails.success) {
@@ -39,7 +36,7 @@ const userLogin = asyncHandler(async (req: Request, res: Response) => {
       userDetails.error
     );
   }
-  const userExist = await prisma.user.findFirst({
+  const userExist = await User.findOne({
     where: {
       email: userDetails.data.email,
     },
@@ -62,4 +59,4 @@ const userLogout = asyncHandler(async (req: Request, res: Response) => {
     .status(200)
     .send(ApiResponse.success("successfully logout"));
 });
-export { userRegister, userRegiste3r, userLogin, userLogout };
+export { userRegister, userLogin, userLogout };

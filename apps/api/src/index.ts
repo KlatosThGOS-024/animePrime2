@@ -4,8 +4,13 @@ dotenv.config({
 });
 
 import app from "./app";
+import { dbConnection } from "@repo/db";
 const port = process.env.PORT;
-
-app.listen(port, () => {
-  console.log("Server has started on port ", port);
+dbConnection().then((response) => {
+  console.log(response);
+  if (response === 1) {
+    app.listen(port, () => {
+      console.log("Server and db started, port ", port);
+    });
+  }
 });

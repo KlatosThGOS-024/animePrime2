@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -b",
-    "node": "nodemon dist/index.js",
+    "node": "node dist/index.js",
     "dev": "npm run build && npm run node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

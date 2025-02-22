@@ -6,13 +6,14 @@ import {
   resetPasswordRequestSchema,
 } from "./User";
 
-export const userType = {
+const userType = {
   signupSchema,
   loginSchema,
   resetPasswordConfirmSchema,
   resetPasswordRequestSchema,
 };
 
-export const animeType = {
+const animeType = {
   animeCard,
 };
+export { userType, animeType };

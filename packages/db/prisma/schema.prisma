@@ -21,9 +21,9 @@ model User {
 
 model AnimeCard {
   id      Int     @id @default(autoincrement())
-  title   String
-  image   String
-  typez   String? // Optional
-  subDub  String
-  timeago String
+  title   String?
+  image   String?
+  typez   String? 
+  subDub  String?
+  timeago String?
 }

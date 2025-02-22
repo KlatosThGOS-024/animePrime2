@@ -9,5 +9,5 @@ const anime_routes_1 = require("./routes/anime.routes");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use("/api/v1/user", user_routes_1.default);
-app.use("/api/v1/anime/animeCard", anime_routes_1.animeRouter);
+app.use("/api/v1/anime", anime_routes_1.animeRouter);
 exports.default = app;

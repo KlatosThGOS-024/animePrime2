@@ -1,9 +1,13 @@
+import {
+  AnimeCardReducerOne,
+  AnimeCardReducerTwo,
+} from "@/functions/Anime.function";
 import { configureStore } from "@reduxjs/toolkit";
-// ...
+
 const store = configureStore({
   reducer: {
-    one: oneSlice.reducer,
-    two: twoSlice.reducer,
+    AnimeCardOne: AnimeCardReducerOne,
+    AnimeCardTwo: AnimeCardReducerTwo,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

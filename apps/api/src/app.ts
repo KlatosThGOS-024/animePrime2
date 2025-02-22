@@ -7,5 +7,5 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1/anime/animeCard", animeRouter);
+app.use("/api/v1/anime", animeRouter);
 export default app;

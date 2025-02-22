@@ -1,8 +1,12 @@
 import Router from "express";
-import { saveAnimeCard } from "../controllers/animedata.controller";
+import {
+  saveAnimeCard,
+  getAnimeCard,
+} from "../controllers/animedata.controller";
 
 const animeRouter = Router();
 
-animeRouter.route("/anime/animeCard").post(saveAnimeCard);
+animeRouter.route("/animeCard/save").post(saveAnimeCard);
+animeRouter.route("/animeCard/get").get(getAnimeCard);
 
 export { animeRouter };

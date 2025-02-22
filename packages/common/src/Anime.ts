@@ -7,4 +7,11 @@ const animeCard = zod.object({
   subDub: zod.string(),
   timeago: zod.string(),
 });
-export { animeCard };
+interface AnimeCardInterface {
+  title: string;
+  image: string;
+  timeago: string;
+  typez: string;
+  subDub: string;
+}
+export { animeCard, AnimeCardInterface };

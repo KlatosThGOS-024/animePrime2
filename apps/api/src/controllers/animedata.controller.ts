@@ -5,8 +5,7 @@ import path from "path";
 import { ApiError } from "../utils/ApiError";
 import { ApiResponse } from "../utils/ApiResponse";
 import { AnimeCard } from "@repo/db";
-import { animeType } from "@repo/common";
-import { title } from "process";
+import { AnimeCardInterface } from "@repo/common/src/Anime";
 const getAnimeFromJSON = () => {
   try {
     const filePath = path.resolve(__dirname, "../../../../Anime.json"); // Go up two levels to the project root
@@ -23,17 +22,9 @@ const getAnimeFromJSON = () => {
   }
 };
 
-interface Anime {
-  title: string;
-  image: string;
-  timeago: string;
-  typez: string;
-  subDub: string;
-}
-
 const saveAnimeCard = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const animeList: Anime[] = getAnimeFromJSON();
+    const animeList: AnimeCardInterface[] = getAnimeFromJSON();
     console.log(animeList);
     const animeCardResponse = await AnimeCard.insertMany(
       animeList.map((anime) => ({
@@ -54,5 +45,23 @@ const saveAnimeCard = asyncHandler(async (req: Request, res: Response) => {
     res.send(new ApiError("Something went wrong", 400, error.message)); // Avoid using @ts-ignore
   }
 });
+const getAnimeCard = asyncHandler(async (req: Request, res: Response) => {
+  try {
+    const animeCardResponse = await AnimeCard.find({});
+    //@ts-ignore
+    console.log("✅ Anime data inserted:", animeCardResponse);
 
-export { saveAnimeCard };
+    res.send(
+      new ApiResponse(
+        true,
+        "Successfully retreved anime data",
+        //@ts-ignore
+
+        animeCardResponse.data
+      )
+    );
+  } catch (error: any) {
+    res.send(new ApiError("Something went wrong", 400, error.message));
+  }
+});
+export { saveAnimeCard, getAnimeCard };

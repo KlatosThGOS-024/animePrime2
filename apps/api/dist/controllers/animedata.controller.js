@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.saveAnimeCard = void 0;
+exports.getAnimeCard = exports.saveAnimeCard = void 0;
 const asyncHandler_1 = require("../utils/asyncHandler");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
@@ -53,3 +53,17 @@ const saveAnimeCard = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(v
     }
 }));
 exports.saveAnimeCard = saveAnimeCard;
+const getAnimeCard = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const animeCardResponse = yield db_1.AnimeCard.find({});
+        //@ts-ignore
+        console.log("✅ Anime data inserted:", animeCardResponse);
+        res.send(new ApiResponse_1.ApiResponse(true, "Successfully retreved anime data", 
+        //@ts-ignore
+        animeCardResponse.data));
+    }
+    catch (error) {
+        res.send(new ApiError_1.ApiError("Something went wrong", 400, error.message));
+    }
+}));
+exports.getAnimeCard = getAnimeCard;

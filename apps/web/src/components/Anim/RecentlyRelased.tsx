@@ -1,15 +1,33 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { useSelector } from "react-redux";
 
+import { RootState } from "@/store/store";
+interface AnimeCardInterface {
+  title?: string;
+  image?: string;
+  timeago?: string;
+  typez?: string;
+  subDub?: string;
+}
 const Carousel = ({ imgSrc }: { imgSrc: string }) => {
+  console.log(imgSrc);
   return (
     <div className="group relative overflow-visible">
-      <img className="w-[320px] h-[184px] rounded-lg" src={imgSrc} />
+      <img
+        loading="lazy"
+        className="w-[304px] h-[304px] rounded-lg"
+        src={imgSrc}
+      />
     </div>
   );
 };
+const image2s = [
+  "https://gogoanime.by/wp-content/uploads/2024/03/saijaku-tamer-wa-gomi-hiroi-no-tabi-wo-hajimemashita.webp",
 
+  "https://i0.wp.com/gogoanime.by/wp-content/uploads/2025/01/Ishura-2nd-Season.jpg?resize=246,350",
+];
 export const ActionGenre = () => {
   const rightSlider = () => {
     var rightSlide = document.getElementById("sliderr");
@@ -35,9 +53,9 @@ export const ActionGenre = () => {
           />
         </div>
         <div className="flex gap-[28px]  w-max flex-nowrap">
-          {images.map((img) => {
+          {image2s.map((img, index) => {
             return (
-              <div>
+              <div key={index}>
                 <Carousel imgSrc={img} />
               </div>
             );
@@ -54,7 +72,12 @@ export const ActionGenre = () => {
     </section>
   );
 };
+
 export const RecentlyRelased = () => {
+  const selectorImage = useSelector((state: RootState) => {
+    return state.AnimeCardReducerOne;
+  });
+  console.log(selectorImage);
   const rightSlider = () => {
     var rightSlide = document.getElementById("sliderr1");
     rightSlide?.scrollBy({ left: +1200, behavior: "smooth" });
@@ -81,10 +104,10 @@ export const RecentlyRelased = () => {
           />
         </div>
         <div className="flex gap-[28px]  w-max flex-nowrap">
-          {images.map((img) => {
+          {selectorImage.map((img, index) => {
             return (
-              <div>
-                <Carousel imgSrc={img} />
+              <div key={index}>
+                {img.image && <Carousel imgSrc={img.image} />}
               </div>
             );
           })}

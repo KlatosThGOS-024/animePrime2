@@ -57,7 +57,7 @@ const getAnimeCard = asyncHandler(async (req: Request, res: Response) => {
         "Successfully retreved anime data",
         //@ts-ignore
 
-        animeCardResponse.data
+        animeCardResponse
       )
     );
   } catch (error: any) {

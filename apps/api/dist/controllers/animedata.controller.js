@@ -60,7 +60,7 @@ const getAnimeCard = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(vo
         console.log("✅ Anime data inserted:", animeCardResponse);
         res.send(new ApiResponse_1.ApiResponse(true, "Successfully retreved anime data", 
         //@ts-ignore
-        animeCardResponse.data));
+        animeCardResponse));
     }
     catch (error) {
         res.send(new ApiError_1.ApiError("Something went wrong", 400, error.message));

@@ -1,13 +1,13 @@
 import axios from "axios";
-
 const getAnimeCard = async () => {
   try {
-    const response = await axios.get(
+    const { data } = await axios.get(
       "http://localhost:8000/api/v1/anime/animeCard/get"
     );
-    return response;
+    return data;
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching anime card:", error);
+    return null;
   }
 };
 

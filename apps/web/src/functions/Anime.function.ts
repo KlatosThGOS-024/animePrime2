@@ -16,7 +16,7 @@ const AnimeCardSlicerOne = createSlice({
   initialState: initialStateOfAnimeCardInTheseDays,
   reducers: {
     addCardOne: (state, action: PayloadAction<AnimeCardInterface[]>) => {
-      return action.payload;
+      return [...action.payload];
     },
   },
 });
@@ -26,7 +26,7 @@ const AnimeCardSlicerTwo = createSlice({
   initialState: initialStateOfAnimeCardInPopularOne,
   reducers: {
     addCardTwo: (state, action: PayloadAction<AnimeCardInterface[]>) => {
-      return action.payload;
+      return [...action.payload];
     },
   },
 });

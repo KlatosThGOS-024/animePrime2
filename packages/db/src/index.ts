@@ -5,7 +5,8 @@ import { User } from "./models/User.model";
 
 const dbConnection = async () => {
   try {
-    const databaseUrl = "";
+    const databaseUrl =
+      "mongodb+srv://new:xP0U3KZJQM7yFqAl@cluster0.une21tv.mongodb.net/";
     const connection = await mongoose.connect(databaseUrl);
     console.log("dssgsgjiodfgiosdghiosdhgoidgoisdhgiusdghksdhsd", databaseUrl);
     console.log("✅ MongoDB Connected:", connection.connection.host);

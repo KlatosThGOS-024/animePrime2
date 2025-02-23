@@ -12,13 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAnimeCard = exports.saveAnimeCard = void 0;
+exports.getAnimeData = exports.getAnimeCard = exports.saveAnimeCard = void 0;
 const asyncHandler_1 = require("../utils/asyncHandler");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const ApiError_1 = require("../utils/ApiError");
 const ApiResponse_1 = require("../utils/ApiResponse");
 const db_1 = require("@repo/db");
+const AnimeData_1 = require("../utils/AnimeData");
 const getAnimeFromJSON = () => {
     try {
         const filePath = path_1.default.resolve(__dirname, "../../../../Anime.json"); // Go up two levels to the project root
@@ -67,3 +68,23 @@ const getAnimeCard = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(vo
     }
 }));
 exports.getAnimeCard = getAnimeCard;
+const getAnimeData = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log("Starting anime data retrieval...");
+        const allUrls = [];
+        for (let i = 1; i <= 8; i++) {
+            const response = new AnimeData_1.RecentReleased();
+            console.log(`Scraping Episode ${i}`);
+            const url = yield response.getAnimeInfo(i);
+            if (url) {
+                allUrls.push(url);
+            }
+        }
+        console.log("All found URLs:", allUrls);
+        res.send(new ApiResponse_1.ApiResponse(true, "Successfully retrieved anime data", allUrls));
+    }
+    catch (error) {
+        res.send(new ApiError_1.ApiError("Something went wrong", 400, error.message));
+    }
+}));
+exports.getAnimeData = getAnimeData;

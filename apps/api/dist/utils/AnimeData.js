@@ -1,4 +1,5 @@
 "use strict";
+// import puppeteer, { Browser, Page } from "puppeteer";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,67 +14,162 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RecentReleased = void 0;
+// export class RecentReleased {
+//   private browser: Browser | null = null;
+//   private page: Page | null = null;
+//   private baseUrl: string =
+//     "https://gogoanime.by/solo-leveling-season-2-episode--english-subbed";
+//   constructor() {}
+//   async launchBrowser(): Promise<void> {
+//     this.browser = await puppeteer.launch({ headless: false });
+//     this.page = await this.browser.newPage();
+//   }
+//   async closeBrowser(): Promise<void> {
+//     if (this.browser) {
+//       await this.browser.close();
+//     }
+//   }
+//   public async getNewAnimeData(): Promise<any[] | undefined> {
+//     if (!this.page) {
+//       await this.launchBrowser(); // ✅ Fix: Launch browser if not initialized
+//     }
+//     await this.page?.goto(this.baseUrl, {
+//       waitUntil: "domcontentloaded", // Use 'domcontentloaded' to ensure the DOM is loaded
+//     });
+//     let animeList: any[] = [];
+//     while (true) {
+//       await this.page?.waitForSelector(".listupd article"); // Ensure the articles are loaded
+//       // Scrape anime data
+//       const animeData = await this.page?.evaluate(() => {
+//         return Array.from(document.querySelectorAll(".listupd article")).map(
+//           (article) => {
+//             const title = article
+//               .querySelector("h2")
+//               ?.innerText.trim()
+//               .split("Episode")[0];
+//             const typez = (
+//               article.getElementsByClassName("typez")[0] as HTMLElement
+//             )?.innerText.trim();
+//             const subDub = (
+//               article.getElementsByClassName("Sub")[0] as HTMLElement
+//             )?.innerText.trim();
+//             const timeago = (
+//               article.getElementsByClassName("timeago")[0] as HTMLElement
+//             )?.innerText.trim();
+//             const image = article.querySelector("img")?.src;
+//             return { title, image, typez, subDub, timeago };
+//           }
+//         );
+//       });
+//       // Store the extracted anime data
+//       animeList = animeList.concat(animeData);
+//       console.log(animeList);
+//       // Check if "Next" button exists
+//       const nextButton = await this.page?.$(".hpage a.r");
+//       if (!nextButton) {
+//         console.log("No more pages. Scraping complete!");
+//         break; // Exit loop if "Next" button is not found
+//       }
+//       // Click on "Next" and wait for navigation
+//       await Promise.all([nextButton.click(), this.page?.waitForNavigation()]);
+//     }
+//     return animeList;
+//   }
+//   public async getAnimeInfo(EpisodeNumber: number): Promise<any[] | undefined> {
+//     if (!this.browser) {
+//       await this.launchBrowser();
+//     }
+//     // Create the episode URL
+//     const episodeUrl = `https://gogoanime.by/solo-leveling-season-2-arise-from-the-shadow-episode-${EpisodeNumber}-english-subbed/`;
+//     console.log("Navigating to:", episodeUrl); // Log the URL
+//     await this.page?.goto(episodeUrl, { waitUntil: "domcontentloaded" });
+//     const videoServerType = await this.page?.waitForSelector(
+//       "div.servers > div > ul > li:nth-child(2)"
+//     );
+//     if (videoServerType) {
+//       await videoServerType.click();
+//       this.page?.on("response", async (response) => {
+//         const url = response.url();
+//         if (
+//           url.includes(
+//             "wp-content/plugins/video-player/includes/histream/play.php"
+//           )
+//         ) {
+//           console.log("Found URL:", url);
+//         }
+//       });
+//       await this.page?.waitForFunction(
+//         () => {
+//           const foundUrl = [
+//             ...window.performance.getEntriesByType("resource"),
+//           ].some((entry) =>
+//             entry.name.includes(
+//               "wp-content/plugins/video-player/includes/histream/play.php"
+//             )
+//           );
+//           return foundUrl;
+//         },
+//         { timeout: 5000 }
+//       );
+//       console.log("URL found and function completed.");
+//       return; // You may return the actual URL or other data if needed
+//     }
+//   }
+// }
 const puppeteer_1 = __importDefault(require("puppeteer"));
 class RecentReleased {
     constructor() {
-        this.browser = null;
-        this.page = null;
-        this.baseUrl = "https://gogoanime.by/";
+        this.baseUrl = "https://gogoanime.by/solo-leveling-season-2-episode--english-subbed";
     }
     launchBrowser() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.browser = yield puppeteer_1.default.launch({ headless: false });
-            this.page = yield this.browser.newPage();
+            const browser = yield puppeteer_1.default.launch({ headless: false });
+            const page = yield browser.newPage();
+            return { browser, page };
         });
     }
-    closeBrowser() {
+    getAnimeInfo(EpisodeNumber) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.browser) {
-                yield this.browser.close();
-            }
-        });
-    }
-    getNewAnimeData() {
-        return __awaiter(this, void 0, void 0, function* () {
-            var _a, _b, _c, _d, _e;
-            if (!this.page) {
-                yield this.launchBrowser(); // ✅ Fix: Launch browser if not initialized
-            }
-            yield ((_a = this.page) === null || _a === void 0 ? void 0 : _a.goto(this.baseUrl, {
-                waitUntil: "load",
-            }));
-            let animeList = [];
-            while (true) {
-                yield ((_b = this.page) === null || _b === void 0 ? void 0 : _b.waitForSelector(".listupd article"));
-                // Scrape anime data
-                const animeData = yield ((_c = this.page) === null || _c === void 0 ? void 0 : _c.evaluate(() => {
-                    return Array.from(document.querySelectorAll(".listupd article")).map((article) => {
-                        var _a, _b, _c, _d, _e;
-                        const title = (_a = article
-                            .querySelector("h2")) === null || _a === void 0 ? void 0 : _a.innerText.trim().split("Episode")[0];
-                        const typez = (_b = article.getElementsByClassName("typez")[0]) === null || _b === void 0 ? void 0 : _b.innerText.trim();
-                        const subDub = (_c = article.getElementsByClassName("Sub")[0]) === null || _c === void 0 ? void 0 : _c.innerText.trim();
-                        const timeago = (_d = article.getElementsByClassName("timeago")[0]) === null || _d === void 0 ? void 0 : _d.innerText.trim();
-                        const image = (_e = article.querySelector("img")) === null || _e === void 0 ? void 0 : _e.src;
-                        return { title, image, typez, subDub, timeago };
-                    });
-                }));
-                // Store the extracted anime data
-                animeList = animeList.concat(animeData);
-                console.log(animeList);
-                // Check if "Next" button exists
-                const nextButton = yield ((_d = this.page) === null || _d === void 0 ? void 0 : _d.$(".hpage a.r"));
-                if (!nextButton) {
-                    console.log("No more pages. Scraping complete!");
-                    break; // Exit loop if "Next" button is not found
+            // Launch a new browser and page for this episode
+            const { browser, page } = yield this.launchBrowser();
+            try {
+                // Construct episode URL
+                let episodeUrl = `https://gogoanime.by/solo-leveling-season-2-arise-from-the-shadow-episode-${EpisodeNumber}-english-subbed/`;
+                if (EpisodeNumber == 8) {
+                    episodeUrl = `https://gogoanime.by/solo-leveling-season-2-arise-from-the-shadow-episode-${EpisodeNumber}-english-subbed/`;
                 }
-                // Click on "Next" and wait for navigation
-                yield Promise.all([nextButton.click(), (_e = this.page) === null || _e === void 0 ? void 0 : _e.waitForNavigation()]);
+                console.log("Navigating to:", episodeUrl);
+                yield page.goto(episodeUrl, { waitUntil: "domcontentloaded" });
+                const videoServerType = yield page.waitForSelector("div.servers > div > ul > li:nth-child(2)");
+                let foundUrl = undefined;
+                if (videoServerType) {
+                    yield videoServerType.click();
+                    page.on("response", (response) => __awaiter(this, void 0, void 0, function* () {
+                        const url = response.url();
+                        if (url.includes("wp-content/plugins/video-player/includes/histream/play.php")) {
+                            console.log("Found URL:", url);
+                            foundUrl = url;
+                        }
+                    }));
+                    yield page.waitForFunction(() => {
+                        const foundUrl = [
+                            ...window.performance.getEntriesByType("resource"),
+                        ].some((entry) => entry.name.includes("wp-content/plugins/video-player/includes/histream/play.php"));
+                        return foundUrl;
+                    }, { timeout: 5000 });
+                    console.log("URL found and function completed.");
+                }
+                return foundUrl;
             }
-            return animeList;
+            catch (error) {
+                console.error(`Error fetching episode ${EpisodeNumber}:`, error);
+                return undefined;
+            }
+            finally {
+                // Close the browser after the episode is processed
+                yield browser.close();
+            }
         });
     }
 }
 exports.RecentReleased = RecentReleased;
-const instance = new RecentReleased();
-console.log(instance.getNewAnimeData());

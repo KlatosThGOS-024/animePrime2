@@ -6,6 +6,7 @@ import { ApiError } from "../utils/ApiError";
 import { ApiResponse } from "../utils/ApiResponse";
 import { AnimeCard } from "@repo/db";
 import { AnimeCardInterface } from "@repo/common/src/Anime";
+import { RecentReleased } from "../utils/AnimeData";
 const getAnimeFromJSON = () => {
   try {
     const filePath = path.resolve(__dirname, "../../../../Anime.json"); // Go up two levels to the project root
@@ -64,4 +65,29 @@ const getAnimeCard = asyncHandler(async (req: Request, res: Response) => {
     res.send(new ApiError("Something went wrong", 400, error.message));
   }
 });
-export { saveAnimeCard, getAnimeCard };
+const getAnimeData = asyncHandler(async (req: Request, res: Response) => {
+  try {
+    console.log("Starting anime data retrieval...");
+
+    const allUrls: string[] = [];
+
+    for (let i = 1; i <= 8; i++) {
+      const response = new RecentReleased();
+      console.log(`Scraping Episode ${i}`);
+
+      const url = await response.getAnimeInfo(i);
+      if (url) {
+        allUrls.push(url);
+      }
+    }
+
+    console.log("All found URLs:", allUrls);
+    res.send(
+      new ApiResponse(true, "Successfully retrieved anime data", allUrls)
+    );
+  } catch (error: any) {
+    res.send(new ApiError("Something went wrong", 400, error.message));
+  }
+});
+
+export { saveAnimeCard, getAnimeCard, getAnimeData };

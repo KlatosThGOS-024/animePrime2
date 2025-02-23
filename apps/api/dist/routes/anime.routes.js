@@ -10,3 +10,4 @@ const animeRouter = (0, express_1.default)();
 exports.animeRouter = animeRouter;
 animeRouter.route("/animeCard/save").post(animedata_controller_1.saveAnimeCard);
 animeRouter.route("/animeCard/get").get(animedata_controller_1.getAnimeCard);
+animeRouter.route("/anime/getData").get(animedata_controller_1.getAnimeData);

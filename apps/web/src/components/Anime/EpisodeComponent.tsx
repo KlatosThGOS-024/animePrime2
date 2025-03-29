@@ -7,7 +7,7 @@ const EpisodeBox = ({ eNo }: { eNo: string }) => {
     <div>
       <div className="flex gap-4 w-[60%]">
         <img
-          className="h-[70%] w-[15%]"
+          className=""
           src="https://cdn.myanimelist.net/images/anime/1244/138851.jpg"
         />
         <div>

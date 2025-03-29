@@ -48,16 +48,17 @@ const saveAnimeCard = asyncHandler(async (req: Request, res: Response) => {
 });
 const getAnimeCard = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const animeCardResponse = await AnimeCard.find({});
-    //@ts-ignore
-    console.log("✅ Anime data inserted:", animeCardResponse);
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = 50;
+
+    const skip = (page - 1) * limit;
+
+    const animeCardResponse = await AnimeCard.find({}).skip(skip).limit(limit);
 
     res.send(
       new ApiResponse(
         true,
-        "Successfully retreved anime data",
-        //@ts-ignore
-
+        "Successfully retrieved anime data",
         animeCardResponse
       )
     );
@@ -65,6 +66,7 @@ const getAnimeCard = asyncHandler(async (req: Request, res: Response) => {
     res.send(new ApiError("Something went wrong", 400, error.message));
   }
 });
+
 const getAnimeData = asyncHandler(async (req: Request, res: Response) => {
   try {
     console.log("Starting anime data retrieval...");

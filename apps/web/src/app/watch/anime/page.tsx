@@ -1,4 +1,4 @@
-import { EpisodeComponent } from "@/components/Anim/EpisodeComponent";
+import { EpisodeComponent } from "@/components/Anime/EpisodeComponent";
 import { Nav } from "@/components/home/Nav";
 import React from "react";
 import { FaPlus } from "react-icons/fa";

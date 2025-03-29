@@ -1,8 +1,8 @@
 import {
   ActionGenre,
   RecentlyRelased,
-} from "../../components/Anim/RecentlyRelased";
-import { Header } from "../../components/home/Header";
+} from "@/components/Anime/RecentlyRelased";
+import { Header } from "@/components/home/Header";
 
 const page = () => {
   return (

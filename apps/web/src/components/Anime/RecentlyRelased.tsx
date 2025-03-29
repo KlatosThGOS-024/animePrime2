@@ -77,7 +77,6 @@ export const RecentlyRelased = () => {
   const selectorImage = useSelector((state: RootState) => {
     return state.AnimeCardReducerOne;
   });
-  console.log(selectorImage);
   const rightSlider = () => {
     var rightSlide = document.getElementById("sliderr1");
     rightSlide?.scrollBy({ left: +1200, behavior: "smooth" });

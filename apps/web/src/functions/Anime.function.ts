@@ -16,7 +16,7 @@ const AnimeCardSlicerOne = createSlice({
   initialState: initialStateOfAnimeCardInTheseDays,
   reducers: {
     addCardOne: (state, action: PayloadAction<AnimeCardInterface[]>) => {
-      return [...action.payload];
+      state.push(...action.payload);
     },
   },
 });

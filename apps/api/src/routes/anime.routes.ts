@@ -8,7 +8,7 @@ import {
 const animeRouter = Router();
 
 animeRouter.route("/animeCard/save").post(saveAnimeCard);
-animeRouter.route("/animeCard/get").get(getAnimeCard);
+animeRouter.route("/animeCard/get").post(getAnimeCard);
 animeRouter.route("/anime/getData").get(getAnimeData);
 
 export { animeRouter };
